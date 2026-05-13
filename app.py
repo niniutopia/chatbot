@@ -1,12 +1,16 @@
 from openai import OpenAI
+from dotenv import load_dotenv
+import os
 import streamlit as st
 
-st.title("ChatGPT-like clone")
+load_dotenv(override=True)
 
-client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+OPENAI_API_KEY_OP = os.getenv('OPENAI_API_KEY_OP')
+BASE_URL = "https://openrouter.ai/api/v1"
 
-if "openai_model" not in st.session_state:
-    st.session_state["openai_model"] = "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
+MODEL = "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
+
+##########
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
