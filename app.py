@@ -3,18 +3,9 @@ import streamlit as st
 from dotenv import load_dotenv
 import os
 
-load_dotenv(override=True)
-
-OPENAI_API_KEY_OP = os.getenv('OPENAI_API_KEY_OP')
-BASE_URL = "https://openrouter.ai/api/v1"
-
-
 st.title("ChatGPT-like clone")
 
-client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])client = OpenAI(
-                base_url=BASE_URL,
-                api_key=OPENAI_API_KEY_OP,
-                )
+client = OpenAI(api_key=os.getenv('OPENAI_API_KEY_OP'))
 
 if "openai_model" not in st.session_state:
     st.session_state["openai_model"] = "gpt-3.5-turbo"
