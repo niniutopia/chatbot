@@ -1,11 +1,9 @@
 from openai import OpenAI
 import streamlit as st
-from dotenv import load_dotenv
-import os
 
 st.title("ChatGPT-like clone")
 
-client = OpenAI(api_key=os.getenv('OPENAI_API_KEY_OP'))
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 if "openai_model" not in st.session_state:
     st.session_state["openai_model"] = "gpt-3.5-turbo"
