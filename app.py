@@ -1,7 +1,7 @@
 from openai import OpenAI
 import streamlit as st
 
-MODEL = "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
+MODEL = "nvidia/nemotron-3-super-120b-a12b:free"
 BASE_URL = "https://openrouter.ai/api/v1"
 
 st.title("ChatGPT-like clone")
