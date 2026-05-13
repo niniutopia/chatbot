@@ -1,12 +1,17 @@
 from openai import OpenAI
 import streamlit as st
 
-st.title("ChatGPT-like clone")
+MODEL = "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
+BASE_URL = "https://openrouter.ai/api/v1"
 
-client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+st.title("ChatGPT-like clone")
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"],
+                base_url=BASE_URL,
+                )
 
 if "openai_model" not in st.session_state:
-    st.session_state["openai_model"] = "gpt-3.5-turbo"
+    st.session_state["openai_model"] = MODEL
+
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
