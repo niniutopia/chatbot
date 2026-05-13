@@ -4,7 +4,7 @@ import streamlit as st
 MODEL = "nvidia/nemotron-3-super-120b-a12b:free"
 BASE_URL = "https://openrouter.ai/api/v1"
 
-st.title("ChatGPT-like clone")
+st.title("Bottino Carino")
 client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"],
                 base_url=BASE_URL,
                 )
