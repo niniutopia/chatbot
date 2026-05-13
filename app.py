@@ -1,22 +1,12 @@
 from openai import OpenAI
 import streamlit as st
 
-st.title("OpenRouter Chat Clone")
+st.title("ChatGPT-like clone")
 
-# 1. MODIFICA IL CLIENT: Aggiungi il base_url di OpenRouter e la tua API Key di OpenRouter
-client = OpenAI(
-    base_url="https://openrouter.ai/api/v1",
-    api_key=st.secrets["OPENROUTER_API_KEY"], 
-    # OpenRouter consiglia di passare questi header opzionali per le statistiche:
-    # default_headers={
-    #     "HTTP-Referer": "YOUR_SITE_URL", # Opzionale
-    #     "X-Title": "YOUR_APP_NAME",      # Opzionale
-    # }
-)
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
-# 2. MODIFICA IL MODELLO: Inserisci l'ID del modello di OpenRouter (es. anthropic/claude-3-haiku, google/gemini-flash, ecc.)
-if "model" not in st.session_state:
-    st.session_state["model"] = "meta-llama/llama-3-8b-instruct" # Inserisci qui il tuo modello!
+if "openai_model" not in st.session_state:
+    st.session_state["openai_model"] = "gpt-3.5-turbo"
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
@@ -32,7 +22,7 @@ if prompt := st.chat_input("What is up?"):
 
     with st.chat_message("assistant"):
         stream = client.chat.completions.create(
-            model=st.session_state["model"], # <-- Assicurati che punti alla variabile corretta
+            model=st.session_state["openai_model"],
             messages=[
                 {"role": m["role"], "content": m["content"]}
                 for m in st.session_state.messages
